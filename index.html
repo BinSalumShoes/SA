@@ -13,68 +13,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ali | Personal Portfolio</title>
+    <title>Nahlat | Portfolio</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; color: #333; }
-        header { background: #2c3e50; color: #fff; padding: 1rem 0; text-align: center; position: sticky; top: 0; }
-        .container { width: 80%; margin: auto; overflow: hidden; padding: 2rem 0; }
-        
-        #hero { text-align: center; padding: 50px 0; background: #f4f4f4; }
-        #hero h1 { margin: 0; font-size: 3rem; color: #2c3e50; }
-        
-        .section-title { border-bottom: 2px solid #2c3e50; display: inline-block; margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        footer { background: #2c3e50; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
-        a { color: #3498db; text-decoration: none; }
+        :root {
+            --primary-color: #2d3436;
+            --accent-color: #0984e3;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+        }
+
+        .project-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h2>Ali's Portfolio</h2>
-    </header>
+<header>
+    <h1>Nahlat</h1>
+    <p>Student & Aspiring Professional</p>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-    <section id="hero">
-        <div class="container">
-            <h1>Hi, I'm Ali</h1>
-            <p>Student | Aspiring Developer | Lifelong Learner</p>
+<div class="container">
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hello! I'm Nahlat. I am a dedicated student passionate about learning new technologies 
+            and solving complex problems. I enjoy working on projects that bridge the gap between 
+            theory and practice.
+        </p>
+    </section>
+
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-card">
+            <h3>Project One Title</h3>
+            <p>A brief description of what you built, the tools you used, and the problem it solved.</p>
+        </div>
+        <div class="project-card">
+            <h3>Project Two Title</h3>
+            <p>Highlight your role in this project and the key takeaway or result you achieved.</p>
         </div>
     </section>
 
-    <div class="container">
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p>I am currently studying [Your Major] with a focus on [Interest]. I love solving complex problems and learning new technologies. When I'm not studying, you can find me [Hobby/Interest].</p>
-        </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li class="skill-tag">Python</li>
+            <li class="skill-tag">Public Speaking</li>
+            <li class="skill-tag">Data Analysis</li>
+            <li class="skill-tag">Project Management</li>
+            <li class="skill-tag">HTML/CSS</li>
+        </ul>
+    </section>
 
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Project One</h3>
-                    <p>A brief description of a cool project Ali worked on in class or as a hobby.</p>
-                    <a href="#">View Project →</a>
-                </div>
-                <div class="card">
-                    <h3>Project Two</h3>
-                    <p>Another example of work, like a research paper, a piece of art, or a coding app.</p>
-                    <a href="#">View Project →</a>
-                </div>
-            </div>
-        </section>
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p>I’m always open to collaborating on new projects or discussing academic opportunities.</p>
+        <p>Email: <a href="mailto:nahlat@example.com">nahlat@example.com</a></p>
+    </section>
+</div>
 
-        <section id="contact">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>I'm always open to discussing new opportunities or collaborations.</p>
-            <p>Email: <a href="mailto:ali@example.com">ali@example.com</a></p>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Ali. Built with focus and caffeine.</p>
-    </footer>
+<footer>
+    &copy; 2026 Nahlat. Built with curiosity.
+</footer>
 
 </body>
+</html>
 </html>
