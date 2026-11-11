@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="sw" id="htmlTag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BinSalum Shop | Viatu vya Watoto na Wakubwa</title>
+    <title>Mtendeni Kids & Adult Footwear</title>
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -17,13 +17,33 @@
         }
 
         body {
-            background-color: #f8f9fa;
+            background-color: #fcfcfc;
             color: #333;
+        }
+
+        /* Top Bar for Language Selector */
+        .top-bar {
+            background-color: #111;
+            color: white;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .top-bar select {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
         /* Header / Navbar */
         header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: white;
             padding: 15px 5%;
             display: flex;
@@ -32,17 +52,17 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             letter-spacing: 1px;
         }
 
         .logo span {
-            color: #ff9f43;
+            color: #f39c12;
         }
 
         nav a {
@@ -54,13 +74,13 @@
         }
 
         nav a:hover {
-            color: #ff9f43;
+            color: #f39c12;
         }
 
         /* Hero Banner */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1200&q=80') center/cover;
-            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('WhatsApp Image 2026-11-11 at 16.45.01.jpeg') center/cover;
+            height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -71,35 +91,57 @@
         }
 
         .hero h1 {
-            font-size: 36px;
+            font-size: 34px;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
         }
 
         .hero p {
-            font-size: 18px;
-            color: #ddd;
+            font-size: 16px;
+            color: #f1f1f1;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        /* Search Box Feature */
+        .search-container {
+            margin: -25px auto 30px;
+            max-width: 500px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            font-size: 15px;
+            outline: none;
         }
 
         /* Main Container */
         .container {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 20px auto;
             padding: 0 20px;
         }
 
         .section-title {
             text-align: center;
-            font-size: 28px;
+            font-size: 26px;
             margin-bottom: 30px;
-            color: #1e3c72;
+            color: #203a43;
             position: relative;
         }
 
         .section-title::after {
             content: '';
-            width: 80px;
-            height: 4px;
-            background-color: #ff9f43;
+            width: 60px;
+            height: 3px;
+            background-color: #f39c12;
             display: block;
             margin: 8px auto 0;
             border-radius: 2px;
@@ -108,7 +150,7 @@
         /* Products Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 25px;
             margin-bottom: 50px;
         }
@@ -118,25 +160,26 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid #eee;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
         }
 
         .product-img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
         }
 
         .product-info {
-            padding: 15px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -144,40 +187,36 @@
 
         .product-tag {
             align-self: flex-start;
-            background-color: #e15f41;
+            background-color: #e67e22;
             color: white;
-            font-size: 12px;
+            font-size: 11px;
             padding: 3px 8px;
             border-radius: 4px;
             margin-bottom: 8px;
             font-weight: 600;
+            text-transform: uppercase;
         }
 
         .product-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             margin-bottom: 8px;
+            color: #2c3e50;
         }
 
         .product-desc {
             font-size: 13px;
             color: #666;
-            margin-bottom: 12px;
-            flex-grow: 1;
-        }
-
-        .product-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1e3c72;
             margin-bottom: 15px;
+            flex-grow: 1;
+            line-height: 1.5;
         }
 
-        .btn-buy {
+        .btn-call {
             background-color: #25d366;
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 12px;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
@@ -186,157 +225,305 @@
             justify-content: center;
             gap: 8px;
             transition: background 0.3s;
+            font-size: 14px;
         }
 
-        .btn-buy:hover {
-            background-color: #1ebd56;
+        .btn-call:hover {
+            background-color: #20ba5a;
+        }
+
+        /* Extra Feature: Why Choose Us / Testimonials */
+        .features-section {
+            background: #f1f4f6;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .feature-box i {
+            font-size: 30px;
+            color: #2c5364;
+            margin-bottom: 10px;
+        }
+
+        .feature-box h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #203a43;
+        }
+
+        .feature-box p {
+            font-size: 13px;
+            color: #666;
         }
 
         /* Footer */
         footer {
-            background-color: #1e3c72;
+            background-color: #0f2027;
             color: white;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 30px 20px;
+            margin-top: 50px;
+            line-height: 1.8;
         }
 
-        /* Responsive */
+        footer p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        footer .location-highlight {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
                 gap: 10px;
             }
             nav a {
-                margin: 0 10px;
+                margin: 0 8px;
+                font-size: 14px;
+            }
+            .hero h1 {
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Top Bar with Language Option -->
+    <div class="top-bar">
+        <span>📍 Mtendeni kwa Kijiko, Zanzibar</span>
+        <div>
+            <label for="languageSelect"><i class="fa-solid fa-globe"></i> Lugha: </label>
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="sw">Kiswahili</option>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
-        <div class="logo">BinSalum <span>Shop</span></div>
+        <div class="logo" id="storeName">Mtendeni <span>Footwear</span></div>
         <nav>
-            <a href="#watoto">Watoto</a>
-            <a href="#wakubwa">Wakubwa</a>
-            <a href="#mawasiliano">Mawasiliano</a>
+            <a href="#bidhaa" id="navProducts">Viatu</a>
+            <a href="#kuhusu" id="navAbout">Kuhusu Sisi</a>
+            <a href="#mawasiliano" id="navContact">Mawasiliano</a>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <div class="hero">
-        <h1>Viatu Bora vya Watoto na Wakubwa</h1>
-        <p>Muonekano wa Kisasa, Sokko Imara na Bei Nafuu!</p>
+        <h1 id="heroTitle">Viatu Vya Kisasa kwa Watoto na Wakubwa</h1>
+        <p id="heroDesc">Pendezesha familia yako kwa viatu imara, vya bei nafuu na vyenye muonekano wa kipekee.</p>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Tafuta aina ya kiatu unachotaka..." onkeyup="searchProducts()">
     </div>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="container" id="bidhaa">
 
-        <!-- Sehemu ya Watoto -->
-        <h2 class="section-title" id="watoto">Viatu vya Watoto</h2>
-        <div class="product-grid">
+        <h2 class="section-title" id="secTitle">Mkusanyiko Wetu wa Viatu</h2>
+        
+        <div class="product-grid" id="productGrid">
 
             <!-- Kiatu 1 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Sneakers za Watoto">
+            <div class="product-card" data-name="sneakers za watoto watoto">
+                <img src="WhatsApp Image 2026-11-11 at 16.45.01.jpeg" class="product-img" alt="Kiatu">
                 <div class="product-info">
-                    <span class="product-tag">Watoto</span>
-                    <h3 class="product-title">Sneakers za Michezo (Watoto)</h3>
-                    <p class="product-desc">Zina sokko nene za mpira, hazitelezi na ni nzuri sana kwa michezo na shule.</p>
-                    <div class="product-price">TSH 35,000</div>
-                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Sneakers%20za%20Watoto" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    <span class="product-tag">Watoto / Kids</span>
+                    <h3 class="product-title">Sneakers za Kisasa za Watoto</h3>
+                    <p class="product-desc">Kiatu chepesi sana, chenye sokko imara inayokinga miguu ya mtoto dhidi ya michubuko. Kinadumu na kinafaa kwa shule na matembezi.</p>
+                    <a href="tel:0622478731" class="btn-call">
+                        <i class="fa-solid fa-phone"></i> Piga: 0622478731
                     </a>
                 </div>
             </div>
 
             <!-- Kiatu 2 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1543853003-fb2fe1e81688?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Viatu vya Taa Watoto">
+            <div class="product-card" data-name="viatu vya watoto vya michezo">
+                <img src="WhatsApp Image 2026-11-11 at 16.45.02.jpeg" class="product-img" alt="Kiatu">
                 <div class="product-info">
-                    <span class="product-tag">Watoto</span>
-                    <h3 class="product-title">Viatu vya Taa (Kids LED)</h3>
-                    <p class="product-desc">Viatu vya kisasa vyenye taa za rangi na sokko laini inayompa mtoto urahisi wa kutembea.</p>
-                    <div class="product-price">TSH 40,000</div>
-                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Viatu%20vya%20Taa%20vyote" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    <span class="product-tag">Watoto / Kids</span>
+                    <h3 class="product-title">Viatu vya Michezo vya Watoto</h3>
+                    <p class="product-desc">Muonekano wa kipekee wenye rangi za kuvutia. Vimeandaliwa maalum kwa ajili ya watoto wanaopenda kukimbia na kucheza bila kuchoka.</p>
+                    <a href="tel:0778595852" class="btn-call">
+                        <i class="fa-solid fa-phone"></i> Piga: 0778595852
                     </a>
                 </div>
             </div>
 
             <!-- Kiatu 3 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1507464098880-e367bc5d2c08?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Sandals za Watoto">
+            <div class="product-card" data-name="viatu vya wakubwa ngozi official">
+                <img src="WhatsApp Image 2026-11-11 at 16.45.02 (1).jpeg" class="product-img" alt="Kiatu">
                 <div class="product-info">
-                    <span class="product-tag">Watoto</span>
-                    <h3 class="product-title">Sandals za Ngozi (Watoto)</h3>
-                    <p class="product-desc">Viatu vya wazi vilivyotengenezwa kwa ngozi imara, sokko yenye mshikio mzuri.</p>
-                    <div class="product-price">TSH 28,000</div>
-                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Sandals%20za%20Watoto" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    <span class="product-tag" style="background-color: #203a43;">Wakubwa / Adults</span>
+                    <h3 class="product-title">Viatu vya Ngozi vya Kiofisi</h3>
+                    <p class="product-desc">Ngozi halisi iliyotengenezwa kwa ustadi mkubwa. Vinakupa muonekano wa kiheshima na kujiamini kazini au kwenye mikutano.</p>
+                    <a href="tel:0622478731" class="btn-call">
+                        <i class="fa-solid fa-phone"></i> Piga: 0622478731
                     </a>
                 </div>
             </div>
 
             <!-- Kiatu 4 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Viatu vya Wasichana">
+            <div class="product-card" data-name="sandals za watoto na wakubwa">
+                <img src="WhatsApp Image 2026-11-11 at 16.45.02 (2).jpeg" class="product-img" alt="Kiatu">
                 <div class="product-info">
-                    <span class="product-tag">Watoto</span>
-                    <h3 class="product-title">Viatu vya Mitindo (Wasichana)</h3>
-                    <p class="product-desc">Muonekano wa kuvutia wenye urembo wa kisasa. Ni imara na vinadumu muda mrefu.</p>
-                    <div class="product-price">TSH 32,000</div>
-                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Viatu%20vya%20Wasichana" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    <span class="product-tag">Unisex / Familia</span>
+                    <h3 class="product-title">Sandals Imara za Kutembelea</h3>
+                    <p class="product-desc">Ziko vizuri miguuni, hazitelezi na zina uwezo mkubwa wa kuhimili hali zote za hewa. Chaguo sahihi kwa siku za mapumziko.</p>
+                    <a href="tel:0778595852" class="btn-call">
+                        <i class="fa-solid fa-phone"></i> Piga: 0778595852
                     </a>
                 </div>
             </div>
 
-        </div>
-
-        <!-- Sehemu ya Wakubwa -->
-        <h2 class="section-title" id="wakubwa">Viatu vya Wakubwa</h2>
-        <div class="product-grid">
-
             <!-- Kiatu 5 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Sneakers za Wakubwa">
+            <div class="product-card" data-name="sneakers za wakubwa mitindo">
+                <img src="WhatsApp Image 2026-11-11 at 16.45.02 (3).jpeg" class="product-img" alt="Kiatu">
                 <div class="product-info">
-                    <span class="product-tag" style="background-color: #1e3c72;">Wakubwa</span>
-                    <h3 class="product-title">Nike Sports Sneakers</h3>
-                    <p class="product-desc">Sneakers za kisasa kwa ajili ya mazoezi au mtoko wa kawaida. Sokko laini na imara.</p>
-                    <div class="product-price">TSH 65,000</div>
-                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Nike%20Sports%20Sneakers" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    <span class="product-tag" style="background-color: #203a43;">Wakubwa / Adults</span>
+                    <h3 class="product-title">Sneakers za Mitindo ya Kisasa</h3>
+                    <p class="product-desc">Viatu vinavyokwenda na wakati kwa ajili ya vijana na wakubwa wanaopenda muonekano bomba na wa kuvutia kwenye mitoko.</p>
+                    <a href="tel:0622478731" class="btn-call">
+                        <i class="fa-solid fa-phone"></i> Piga: 0622478731
                     </a>
                 </div>
             </div>
 
             <!-- Kiatu 6 -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1614252369475-531eda835eb1?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Viatu vya Offisini">
+            <div class="product-card" data-name="viatu vya watoto madoido">
+                <img src="WhatsApp Image 2026-11-11 at 16.45.02 (4).jpeg" class="product-img" alt="Kiatu">
                 <div class="product-info">
-                    <span class="product-tag" style="background-color: #1e3c72;">Wakubwa</span>
-                    <h3 class="product-title">Viatu vya Ngozi (Official)</h3>
-                    <p class="product-desc">Viatu vya maofisini vya ngozi halisi. Muonekano wa kiofisi na wa heshima.</p>
-                    <div class="product-price">TSH 80,000</div>
-                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Viatu%20vya%20Ngozi%20vyote" class="btn-buy" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    <span class="product-tag">Watoto / Kids</span>
+                    <h3 class="product-title">Viatu vya Watoto vya Sherehe</h3>
+                    <p class="product-desc">Viatu laini na vyenye madoido mazuri kwa ajili ya watoto kushiriki kwenye sherehe na sikukuu kwa maringo.</p>
+                    <a href="tel:0778595852" class="btn-call">
+                        <i class="fa-solid fa-phone"></i> Piga: 0778595852
                     </a>
                 </div>
             </div>
 
         </div>
 
+        <!-- Ongezeko la Ziada lenye Mvuto (Features Section) -->
+        <div class="features-section">
+            <div class="feature-box">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4 id="f1Title">Viatu Vya Ubora wa Juu</h4>
+                <p id="f1Desc">Tunakuletea bidhaa imara zinazodumu kwa muda mrefu.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-tags"></i>
+                <h4 id="f2Title">Bei Nafuu Sana</h4>
+                <p id="f2Desc">Pata bidhaa bora kwa bei rafiki kabisa inayostahili mfuko wako.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <h4 id="f3Title">Fika Mtendeni</h4>
+                <p id="f3Desc">Tupo Mtendeni kwa Kijiko, karibu tukuhudumie moja kwa moja.</p>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Footer -->
+    <!-- Footer / Mawasiliano -->
     <footer id="mawasiliano">
-        <p>&copy; 2026 BinSalum Shop. Haki zote zimehifadhiwa.</p>
-        <p>Mawasiliano: +255 700 000 000 | Dar es Salaam, Tanzania</p>
+        <h3 id="footerHeading" style="margin-bottom: 10px; color: #f39c12;">Mtendeni Kids & Adult Footwear</h3>
+        <p id="footerLoc">📍 Eneo la Biashara: <span class="location-highlight">Mtendeni kwa Kijiko</span></p>
+        <p>📞 Namba za Simu: <strong>0622478731 / 0778595852</strong></p>
+        <p style="margin-top: 15px; font-size: 12px; color: #aaa;">&copy; 2026 Haki zote zimehifadhiwa.</p>
     </footer>
 
+    <!-- JavaScript for Search and Language Translation -->
+    <script>
+        // Search Function
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        // Language Translator Function
+        function changeLanguage() {
+            let lang = document.getElementById('languageSelect').value;
+            let htmlTag = document.getElementById('htmlTag');
+            
+            if (lang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+            }
+
+            if (lang === 'en') {
+                document.getElementById('heroTitle').innerText = "Modern Footwear for Kids & Adults";
+                document.getElementById('heroDesc').innerText = "Dress your family in durable, affordable, and unique style shoes.";
+                document.getElementById('secTitle').innerText = "Our Shoe Collection";
+                document.getElementById('navProducts').innerText = "Shoes";
+                document.getElementById('navAbout').innerText = "About Us";
+                document.getElementById('navContact').innerText = "Contact";
+                document.getElementById('searchInput').placeholder = "Search for shoes...";
+                document.getElementById('f1Title').innerText = "High Quality Shoes";
+                document.getElementById('f1Desc').innerText = "We bring you durable products that last long.";
+                document.getElementById('f2Title').innerText = "Affordable Prices";
+                document.getElementById('f2Desc').innerText = "Get great products at friendly prices.";
+                document.getElementById('f3Title').innerText = "Visit Mtendeni";
+                document.getElementById('f3Desc').innerText = "Located at Mtendeni kwa Kijiko, welcome.";
+                document.getElementById('footerLoc').innerHTML = "📍 Location: <span class='location-highlight'>Mtendeni kwa Kijiko</span>";
+            } else if (lang === 'ar') {
+                document.getElementById('heroTitle').innerText = "أحذية حديثة للأطفال والكبار";
+                document.getElementById('heroDesc').innerText = "ألبس عائلتك أحذية متينة وبأسعار معقولة وذات تصميم فريد.";
+                document.getElementById('secTitle').innerText = "تشكيلة الأحذية لدينا";
+                document.getElementById('navProducts').innerText = "الأحذية";
+                document.getElementById('navAbout').innerText = "معلومات عنا";
+                document.getElementById('navContact').innerText = "اتصل بنا";
+                document.getElementById('searchInput').placeholder = "ابحث عن الأحذية...";
+                document.getElementById('f1Title').innerText = "أحذية عالية الجودة";
+                document.getElementById('f1Desc').innerText = "نقدم لك منتجات متينة تدوم طويلاً.";
+                document.getElementById('f2Title').innerText = "أسعار معقولة";
+                document.getElementById('f2Desc').innerText = "احصل على منتجات رائعة بأسعار مناسبة.";
+                document.getElementById('f3Title').innerText = "زورونا في متينديني";
+                document.getElementById('f3Desc').innerText = "يقع في متينديني كوا كيجيكو، أهلاً وسهلاً.";
+                document.getElementById('footerLoc').innerHTML = "📍 الموقع: <span class='location-highlight'>Mtendeni kwa Kijiko</span>";
+            } else {
+                document.getElementById('heroTitle').innerText = "Viatu Vya Kisasa kwa Watoto na Wakubwa";
+                document.getElementById('heroDesc').innerText = "Pendezesha familia yako kwa viatu imara, vya bei nafuu na vyenye muonekano wa kipekee.";
+                document.getElementById('secTitle').innerText = "Mkusanyiko Wetu wa Viatu";
+                document.getElementById('navProducts').innerText = "Viatu";
+                document.getElementById('navAbout').innerText = "Kuhusu Sisi";
+                document.getElementById('navContact').innerText = "Mawasiliano";
+                document.getElementById('searchInput').placeholder = "Tafuta aina ya kiatu unachotaka...";
+                document.getElementById('f1Title').innerText = "Viatu Vya Ubora wa Juu";
+                document.getElementById('f1Desc').innerText = "Tunakuletea bidhaa imara zinazodumu kwa muda mrefu.";
+                document.getElementById('f2Title').innerText = "Bei Nafuu Sana";
+                document.getElementById('f2Desc').innerText = "Pata bidhaa bora kwa bei rafiki kabisa inayostahili mfuko wako.";
+                document.getElementById('f3Title').innerText = "Fika Mtendeni";
+                document.getElementById('f3Desc').innerText = "Tupo Mtendeni kwa Kijiko, karibu tukuhudumie moja kwa moja.";
+                document.getElementById('footerLoc').innerHTML = "📍 Eneo la Biashara: <span class='location-highlight'>Mtendeni kwa Kijiko</span>";
+            }
+        }
+    </script>
 </body>
 </html>
