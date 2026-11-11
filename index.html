@@ -1,156 +1,342 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>My First Website</title>
-</head>
-<body>
-  <h1>Hello, my name is Student</h1>
-  <p>This is my first website.</p>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nahlat | Portfolio</title>
+    <title>BinSalum Shop | Viatu vya Watoto na Wakubwa</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-color: #2d3436;
-            --accent-color: #0984e3;
-            --bg-color: #f9f9f9;
-            --text-color: #333;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            color: var(--text-color);
-            background-color: var(--bg-color);
+            background-color: #f8f9fa;
+            color: #333;
         }
 
+        /* Header / Navbar */
         header {
-            background: #fff;
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 3px solid var(--accent-color);
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
-        nav {
-            margin-top: 1rem;
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ff9f43;
         }
 
         nav a {
-            margin: 0 15px;
+            color: white;
             text-decoration: none;
-            color: var(--primary-color);
-            font-weight: bold;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
+        nav a:hover {
+            color: #ff9f43;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=1200&q=80') center/cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
             padding: 0 20px;
         }
 
-        section {
-            margin-bottom: 3rem;
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
         }
 
-        h1, h2 {
-            color: var(--primary-color);
+        .hero p {
+            font-size: 18px;
+            color: #ddd;
         }
 
-        .project-card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 1rem;
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .skill-tag {
-            background: var(--accent-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
-        footer {
+        .section-title {
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: #777;
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #ff9f43;
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Products Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-tag {
+            align-self: flex-start;
+            background-color: #e15f41;
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        .btn-buy {
+            background-color: #25d366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #1ebd56;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Nahlat</h1>
-    <p>Student & Aspiring Professional</p>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <!-- Header -->
+    <header>
+        <div class="logo">BinSalum <span>Shop</span></div>
+        <nav>
+            <a href="#watoto">Watoto</a>
+            <a href="#wakubwa">Wakubwa</a>
+            <a href="#mawasiliano">Mawasiliano</a>
+        </nav>
+    </header>
 
-<div class="container">
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Hello! I'm Nahlat. I am a dedicated student passionate about learning new technologies 
-            and solving complex problems. I enjoy working on projects that bridge the gap between 
-            theory and practice.
-        </p>
-    </section>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Viatu Bora vya Watoto na Wakubwa</h1>
+        <p>Muonekano wa Kisasa, Sokko Imara na Bei Nafuu!</p>
+    </div>
 
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="project-card">
-            <h3>Project One Title</h3>
-            <p>A brief description of what you built, the tools you used, and the problem it solved.</p>
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Sehemu ya Watoto -->
+        <h2 class="section-title" id="watoto">Viatu vya Watoto</h2>
+        <div class="product-grid">
+
+            <!-- Kiatu 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Sneakers za Watoto">
+                <div class="product-info">
+                    <span class="product-tag">Watoto</span>
+                    <h3 class="product-title">Sneakers za Michezo (Watoto)</h3>
+                    <p class="product-desc">Zina sokko nene za mpira, hazitelezi na ni nzuri sana kwa michezo na shule.</p>
+                    <div class="product-price">TSH 35,000</div>
+                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Sneakers%20za%20Watoto" class="btn-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kiatu 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1543853003-fb2fe1e81688?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Viatu vya Taa Watoto">
+                <div class="product-info">
+                    <span class="product-tag">Watoto</span>
+                    <h3 class="product-title">Viatu vya Taa (Kids LED)</h3>
+                    <p class="product-desc">Viatu vya kisasa vyenye taa za rangi na sokko laini inayompa mtoto urahisi wa kutembea.</p>
+                    <div class="product-price">TSH 40,000</div>
+                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Viatu%20vya%20Taa%20vyote" class="btn-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kiatu 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1507464098880-e367bc5d2c08?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Sandals za Watoto">
+                <div class="product-info">
+                    <span class="product-tag">Watoto</span>
+                    <h3 class="product-title">Sandals za Ngozi (Watoto)</h3>
+                    <p class="product-desc">Viatu vya wazi vilivyotengenezwa kwa ngozi imara, sokko yenye mshikio mzuri.</p>
+                    <div class="product-price">TSH 28,000</div>
+                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Sandals%20za%20Watoto" class="btn-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kiatu 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Viatu vya Wasichana">
+                <div class="product-info">
+                    <span class="product-tag">Watoto</span>
+                    <h3 class="product-title">Viatu vya Mitindo (Wasichana)</h3>
+                    <p class="product-desc">Muonekano wa kuvutia wenye urembo wa kisasa. Ni imara na vinadumu muda mrefu.</p>
+                    <div class="product-price">TSH 32,000</div>
+                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Viatu%20vya%20Wasichana" class="btn-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    </a>
+                </div>
+            </div>
+
         </div>
-        <div class="project-card">
-            <h3>Project Two Title</h3>
-            <p>Highlight your role in this project and the key takeaway or result you achieved.</p>
+
+        <!-- Sehemu ya Wakubwa -->
+        <h2 class="section-title" id="wakubwa">Viatu vya Wakubwa</h2>
+        <div class="product-grid">
+
+            <!-- Kiatu 5 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Sneakers za Wakubwa">
+                <div class="product-info">
+                    <span class="product-tag" style="background-color: #1e3c72;">Wakubwa</span>
+                    <h3 class="product-title">Nike Sports Sneakers</h3>
+                    <p class="product-desc">Sneakers za kisasa kwa ajili ya mazoezi au mtoko wa kawaida. Sokko laini na imara.</p>
+                    <div class="product-price">TSH 65,000</div>
+                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Nike%20Sports%20Sneakers" class="btn-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    </a>
+                </div>
+            </div>
+
+            <!-- Kiatu 6 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1614252369475-531eda835eb1?auto=format&fit=crop&w=500&q=80" class="product-img" alt="Viatu vya Offisini">
+                <div class="product-info">
+                    <span class="product-tag" style="background-color: #1e3c72;">Wakubwa</span>
+                    <h3 class="product-title">Viatu vya Ngozi (Official)</h3>
+                    <p class="product-desc">Viatu vya maofisini vya ngozi halisi. Muonekano wa kiofisi na wa heshima.</p>
+                    <div class="product-price">TSH 80,000</div>
+                    <a href="https://wa.me/255700000000?text=Habari%20BinSalum%20Shop,%20nahitaji%20Viatu%20vya%20Ngozi%20vyote" class="btn-buy" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Agiza WhatsApp
+                    </a>
+                </div>
+            </div>
+
         </div>
-    </section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul class="skills-list">
-            <li class="skill-tag">Python</li>
-            <li class="skill-tag">Public Speaking</li>
-            <li class="skill-tag">Data Analysis</li>
-            <li class="skill-tag">Project Management</li>
-            <li class="skill-tag">HTML/CSS</li>
-        </ul>
-    </section>
+    </div>
 
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <p>I’m always open to collaborating on new projects or discussing academic opportunities.</p>
-        <p>Email: <a href="mailto:nahlat@example.com">nahlat@example.com</a></p>
-    </section>
-</div>
-
-<footer>
-    &copy; 2026 Nahlat. Built with curiosity.
-</footer>
+    <!-- Footer -->
+    <footer id="mawasiliano">
+        <p>&copy; 2026 BinSalum Shop. Haki zote zimehifadhiwa.</p>
+        <p>Mawasiliano: +255 700 000 000 | Dar es Salaam, Tanzania</p>
+    </footer>
 
 </body>
-</html>
 </html>
