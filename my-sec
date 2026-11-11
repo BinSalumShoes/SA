@@ -1,70 +1,594 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw" id="htmlTag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ali | Personal Portfolio</title>
+    <title>BinSalum Shoes | Step with Style</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; color: #333; }
-        header { background: #2c3e50; color: #fff; padding: 1rem 0; text-align: center; position: sticky; top: 0; }
-        .container { width: 80%; margin: auto; overflow: hidden; padding: 2rem 0; }
-        
-        #hero { text-align: center; padding: 50px 0; background: #f4f4f4; }
-        #hero h1 { margin: 0; font-size: 3rem; color: #2c3e50; }
-        
-        .section-title { border-bottom: 2px solid #2c3e50; display: inline-block; margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .card { background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        footer { background: #2c3e50; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
-        a { color: #3498db; text-decoration: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #fcfcfc;
+            color: #333;
+        }
+
+        /* Top Bar for Language Selector */
+        .top-bar {
+            background-color: #000;
+            color: #d4af37;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .top-bar select {
+            background: #222;
+            color: #fff;
+            border: 1px solid #d4af37;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: #000;
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .logo-text span {
+            color: #d4af37;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1200&q=80') center/cover;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 5px;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero h3 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #ddd;
+            max-width: 600px;
+        }
+
+        /* Search Box Feature */
+        .search-container {
+            margin: -25px auto 30px;
+            max-width: 500px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 2px solid #d4af37;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            font-size: 15px;
+            outline: none;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 30px;
+            color: #000;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: #d4af37;
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Products Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-tag {
+            align-self: flex-start;
+            background-color: #000;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #111;
+        }
+
+        .product-desc {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-call, .btn-wa {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .btn-call {
+            background-color: #000;
+            color: #d4af37;
+            border: 1px solid #d4af37;
+        }
+
+        .btn-call:hover {
+            background-color: #222;
+        }
+
+        .btn-wa {
+            background-color: #25d366;
+            color: white;
+        }
+
+        .btn-wa:hover {
+            background-color: #1ebd56;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: #fff;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-radius: 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .feature-box i {
+            font-size: 32px;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .feature-box h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .feature-box p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            line-height: 1.8;
+            border-top: 2px solid #d4af37;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        footer .location-highlight {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0 8px;
+                font-size: 14px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .btn-group {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h2>Ali's Portfolio</h2>
-    </header>
-
-    <section id="hero">
-        <div class="container">
-            <h1>Hi, I'm Ali</h1>
-            <p>Student | Aspiring Developer | Lifelong Learner</p>
-        </div>
-    </section>
-
-    <div class="container">
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p>I am currently studying [Your Major] with a focus on [Interest]. I love solving complex problems and learning new technologies. When I'm not studying, you can find me [Hobby/Interest].</p>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Project One</h3>
-                    <p>A brief description of a cool project Ali worked on in class or as a hobby.</p>
-                    <a href="#">View Project →</a>
-                </div>
-                <div class="card">
-                    <h3>Project Two</h3>
-                    <p>Another example of work, like a research paper, a piece of art, or a coding app.</p>
-                    <a href="#">View Project →</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">Get In Touch</h2>
-            <p>I'm always open to discussing new opportunities or collaborations.</p>
-            <p>Email: <a href="mailto:ali@example.com">ali@example.com</a></p>
+    <!-- Top Bar with Language Option -->
+    <div class="top-bar">
+        <span>📍 Mtendeni kwa Kijiko, Zanzibar</span>
+        <div>
+            <label for="languageSelect"><i class="fa-solid fa-globe"></i> Lugha: </label>
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="sw">Kiswahili</option>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Ali. Built with focus and caffeine.</p>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <!-- Picha ya Logo (Ukiweka picha yako kwenye GitHub, badilisha link hii uweke jina la picha yako mfano: logo.jpeg) -->
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=150&q=80" alt="BinSalum Logo" class="logo-img">
+            <div class="logo-text" id="storeName">BinSalum <span>Shoes</span></div>
+        </div>
+        <nav>
+            <a href="#bidhaa" id="navProducts">Viatu</a>
+            <a href="#kuhusu" id="navAbout">Kuhusu Sisi</a>
+            <a href="#mawasiliano" id="navContact">Mawasiliano</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1 id="heroTitle">BinSalum Shoes</h1>
+        <h3 id="heroSubTitle">Step with Style</h3>
+        <p id="heroDesc">Quality Shoes at Affordable Prices. Pendezesha familia yako kwa viatu bora na vya kisasa kwa watoto na wakubwa.</p>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-box" placeholder="Tafuta aina ya kiatu unachotaka..." onkeyup="searchProducts()">
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" id="bidhaa">
+
+        <h2 class="section-title" id="secTitle">Mkusanyiko Wetu wa Viatu</h2>
+        
+        <div class="product-grid" id="productGrid">
+
+            <!-- Kiatu 1 -->
+            <div class="product-card" data-name="sneakers za watoto kids michezo">
+                <img src="https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Sneakers za Watoto">
+                <div class="product-info">
+                    <span class="product-tag">Watoto / Kids</span>
+                    <h3 class="product-title">Sneakers za Kisasa za Watoto</h3>
+                    <p class="product-desc">Kiatu chepesi sana, chenye sokko imara inayokinga miguu ya mtoto dhidi ya michubuko. Kinadumu na kinafaa kwa shule na michezo.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Sneakers%20za%20Watoto" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 2 -->
+            <div class="product-card" data-name="viatu vya watoto taa led kids">
+                <img src="https://images.unsplash.com/photo-1543853003-fb2fe1e81688?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Viatu vya Watoto">
+                <div class="product-info">
+                    <span class="product-tag">Watoto / Kids</span>
+                    <h3 class="product-title">Viatu vya Taa (Kids LED)</h3>
+                    <p class="product-desc">Viatu vya kisasa vyenye taa za rangi na sokko laini inayompa mtoto urahisi na furaha ya kutembea muda wote.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Viatu%20vya%20Taa" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 3 -->
+            <div class="product-card" data-name="high heels wanawake ladies">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Viatu vya Wanawake">
+                <div class="product-info">
+                    <span class="product-tag">Ladies / Wanawake</span>
+                    <h3 class="product-title">High Heels za Kihesima</h3>
+                    <p class="product-desc">Muonekano wa kifahari na wa kisasa kwa akina dada na akina mama. Vimetengenezwa kwa umakini wa hali ya juu kwa ajili ya mitoko na sherehe.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20High%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 4 -->
+            <div class="product-card" data-name="loafers ngozi wanaume men official">
+                <img src="https://images.unsplash.com/photo-1614252369475-531eda835eb1?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Viatu vya Wanaume">
+                <div class="product-info">
+                    <span class="product-tag">Men / Wanaume</span>
+                    <h3 class="product-title">Gentlemen Loafers za Ngozi</h3>
+                    <p class="product-desc">Viatu vya ngozi halisi vyenye muonekano wa kipekee na heshima. Ni imara sana na vinalinda mguu kwa urahisi wa kutembea.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Loafers%20za%20Wanaume" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 5 -->
+            <div class="product-card" data-name="sandals wazi open shoes men ladies">
+                <img src="https://images.unsplash.com/photo-1603808033176-9d134e6f2c74?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Sandals Imara">
+                <div class="product-info">
+                    <span class="product-tag">Open Shoes / Sandals</span>
+                    <h3 class="product-title">Sandals za Ngozi za Kisasa</h3>
+                    <p class="product-desc">Sandals za wazi zilivyotengenezwa kwa sokko imara isiyoteleza. Ni nzuri sana kwa matembezi ya kila siku na hali yoyote ya hewa.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 6 -->
+            <div class="product-card" data-name="sports sneakers mazoezi mtoko">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80" class="product-img" alt="Sports Sneakers">
+                <div class="product-info">
+                    <span class="product-tag">Sneakers / Sports</span>
+                    <h3 class="product-title">Classic Sports Sneakers</h3>
+                    <p class="product-desc">Sneakers zenye muonekano bomba wa kimichezo. Sokko yake ni laini, imara na inakupa starehe ya hali ya juu wakati wa kutembea.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Sports%20Sneakers" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section" id="kuhusu">
+            <div class="feature-box">
+                <i class="fa-solid fa-crown"></i>
+                <h4 id="f1Title">Ubora wa Hali ya Juu</h4>
+                <p id="f1Desc">Tunakuletea viatu bora vinavyodumu na kukupa muonekano wa kuvutia.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <h4 id="f2Title">Bei Nafuu na Rafiki</h4>
+                <p id="f2Desc">Pata viatu vya ndoto yako kwa bei nafuu inayostahili mfuko wako.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <h4 id="f3Title">Duka Letu</h4>
+                <p id="f3Desc">Tupo Mtendeni kwa Kijiko, Zanzibar. Karibu tukuhudumie!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer / Mawasiliano -->
+    <footer id="mawasiliano">
+        <h3 id="footerHeading" style="margin-bottom: 8px; color: #d4af37;">BinSalum Shoes</h3>
+        <p style="font-style: italic; margin-bottom: 15px; color: #aaa;">Step with Style</p>
+        <p id="footerLoc">📍 Eneo la Biashara: <span class="location-highlight">Mtendeni kwa Kijiko, Zanzibar</span></p>
+        <p>📞 Simu & WhatsApp: <strong>0622478731</strong></p>
+        <p style="margin-top: 15px; font-size: 12px; color: #888;">&copy; 2026 BinSalum Shoes. Haki zote zimehifadhiwa.</p>
     </footer>
 
+    <!-- JavaScript for Search and Language Translation -->
+    <script>
+        // Search Function
+        function searchProducts() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "flex";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        // Language Translator Function
+        function changeLanguage() {
+            let lang = document.getElementById('languageSelect').value;
+            let htmlTag = document.getElementById('htmlTag');
+            
+            if (lang === 'ar') {
+                htmlTag.setAttribute('dir', 'rtl');
+            } else {
+                htmlTag.setAttribute('dir', 'ltr');
+            }
+
+            if (lang === 'en') {
+                document.getElementById('heroTitle').innerText = "BinSalum Shoes";
+                document.getElementById('heroSubTitle').innerText = "Step with Style";
+                document.getElementById('heroDesc').innerText = "Quality Shoes at Affordable Prices for Kids and Adults.";
+                document.getElementById('secTitle').innerText = "Our Shoe Collection";
+                document.getElementById('navProducts').innerText = "Shoes";
+                document.getElementById('navAbout').innerText = "About Us";
+                document.getElementById('navContact').innerText = "Contact";
+                document.getElementById('searchInput').placeholder = "Search for shoes...";
+                document.getElementById('f1Title').innerText = "High Quality";
+                document.getElementById('f1Desc').innerText = "We offer durable and stylish shoes.";
+                document.getElementById('f2Title').innerText = "Affordable Prices";
+                document.getElementById('f2Desc').innerText = "Get your dream shoes at friendly prices.";
+                document.getElementById('f3Title').innerText = "Visit Our Shop";
+                document.getElementById('f3Desc').innerText = "Located at Mtendeni kwa Kijiko, Zanzibar.";
+                document.getElementById('footerLoc').innerHTML = "📍 Location: <span class='location-highlight'>Mtendeni kwa Kijiko, Zanzibar</span>";
+            } else if (lang === 'ar') {
+                document.getElementById('heroTitle').innerText = "BinSalum Shoes";
+                document.getElementById('heroSubTitle').innerText = "خطواتك بأناقة";
+                document.getElementById('heroDesc').innerText = "أحذية عالية الجودة بأسعار مناسبة للأطفال والكبار.";
+                document.getElementById('secTitle').innerText = "تشكيلة الأحذية لدينا";
+                document.getElementById('navProducts').innerText = "الأحذية";
+                document.getElementById('navAbout').innerText = "معلومات عنا";
+                document.getElementById('navContact').innerText = "اتصل بنا";
+                document.getElementById('searchInput').placeholder = "ابحث عن الأحذية...";
+                document.getElementById('f1Title').innerText = "جودة عالية";
+                document.getElementById('f1Desc').innerText = "نقدم لك أحذية متينة وأنقية.";
+                document.getElementById('f2Title').innerText = "أسعار مناسبة";
+                document.getElementById('f2Desc').innerText = "احصل على أحذيتك بأسعار ممتازة.";
+                document.getElementById('f3Title').innerText = "متجرنا";
+                document.getElementById('f3Desc').innerText = "يقع في متينديني كوا كيجيكو، زنجبار.";
+                document.getElementById('footerLoc').innerHTML = "📍 الموقع: <span class='location-highlight'>متينديني كوا كيجيكو، زنجبار</span>";
+            } else {
+                document.getElementById('heroTitle').innerText = "BinSalum Shoes";
+                document.getElementById('heroSubTitle').innerText = "Step with Style";
+                document.getElementById('heroDesc').innerText = "Quality Shoes at Affordable Prices. Pendezesha familia yako kwa viatu bora na vya kisasa kwa watoto na wakubwa.";
+                document.getElementById('secTitle').innerText = "Mkusanyiko Wetu wa Viatu";
+                document.getElementById('navProducts').innerText = "Viatu";
+                document.getElementById('navAbout').innerText = "Kuhusu Sisi";
+                document.getElementById('navContact').innerText = "Mawasiliano";
+                document.getElementById('searchInput').placeholder = "Tafuta aina ya kiatu unachotaka...";
+                document.getElementById('f1Title').innerText = "Ubora wa Hali ya Juu";
+                document.getElementById('f1Desc').innerText = "Tunakuletea viatu bora vinavyodumu na kukupa muonekano wa kuvutia.";
+                document.getElementById('f2Title').innerText = "Bei Nafuu na Rafiki";
+                document.getElementById('f2Desc').innerText = "Pata viatu vya ndoto yako kwa bei nafuu inayostahili mfuko wako.";
+                document.getElementById('f3Title').innerText = "Duka Letu";
+                document.getElementById('f3Desc').innerText = "Tupo Mtendeni kwa Kijiko, Zanzibar. Karibu tukuhudumie!";
+                document.getElementById('footerLoc').innerHTML = "📍 Eneo la Biashara: <span class='location-highlight'>Mtendeni kwa Kijiko, Zanzibar</span>";
+            }
+        }
+    </script>
 </body>
 </html>
