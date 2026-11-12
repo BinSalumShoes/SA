@@ -95,7 +95,7 @@
 
         /* Hero Banner */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('7.jpeg') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)), url('6.jpeg') center/cover;
             height: 350px;
             display: flex;
             flex-direction: column;
@@ -156,19 +156,15 @@
         .section-title {
             text-align: center;
             font-size: 26px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             color: #000;
-            position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 3px;
-            background-color: #d4af37;
-            display: block;
-            margin: 8px auto 0;
-            border-radius: 2px;
+        .section-subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 30px;
         }
 
         /* Products Grid */
@@ -196,10 +192,37 @@
             box-shadow: 0 12px 25px rgba(0,0,0,0.15);
         }
 
+        .img-wrapper {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
         .product-img {
             width: 100%;
             height: 260px;
             object-fit: cover;
+            transition: transform 0.4s ease;
+            display: block;
+        }
+
+        .img-wrapper:hover .product-img {
+            transform: scale(1.06);
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #d4af37;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .product-info {
@@ -227,6 +250,11 @@
             font-weight: 600;
             margin-bottom: 8px;
             color: #111;
+            cursor: pointer;
+        }
+
+        .product-title:hover {
+            color: #b89426;
         }
 
         .product-desc {
@@ -274,6 +302,131 @@
 
         .btn-wa:hover {
             background-color: #1ebd56;
+        }
+
+        /* Modal Popup for Zoom & Full Details */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.88);
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 15px;
+            max-width: 750px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            border: 2px solid #d4af37;
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: #000;
+            color: #d4af37;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            border: 1px solid #d4af37;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .modal-img-container {
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+            min-height: 320px;
+        }
+
+        .modal-img-container.zoomed {
+            cursor: zoom-out;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            transition: transform 0.35s ease;
+        }
+
+        .modal-img-container.zoomed .modal-img {
+            transform: scale(1.75);
+        }
+
+        .zoom-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            pointer-events: none;
+        }
+
+        .modal-details {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .modal-details h3 {
+            font-size: 21px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .modal-details p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-highlights {
+            background: #f9f6ee;
+            border-left: 3px solid #d4af37;
+            padding: 10px 12px;
+            font-size: 12.5px;
+            color: #333;
+            margin-bottom: 20px;
+            border-radius: 4px;
         }
 
         /* Features Section */
@@ -329,6 +482,15 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 700px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            .modal-img {
+                max-height: 300px;
+            }
+        }
+
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
@@ -391,30 +553,88 @@
     <div class="container" id="bidhaa">
 
         <h2 class="section-title" id="secTitle">Mkusanyiko Wetu wa Viatu</h2>
+        <p class="section-subtitle" id="secSub">💡 Bonyeza picha ya kiatu chochote kukikuza (Zoom) na kusoma maelezo yake kamili</p>
         
         <div class="product-grid" id="productGrid">
 
-            <!-- Kiatu 1 -->
-            <div class="product-card" data-name="sneakers za watoto kids michezo air max">
-                <img src="1.jpeg" class="product-img" alt="Sneakers za Watoto">
+            <!-- Kiatu 1 (1.jpeg) -->
+            <div class="product-card" data-name="black diamond heels wanawake ladies party sherehe harusi">
+                <div class="img-wrapper" onclick="openModal('1.jpeg', 'Ladies / Wanawake', 'Sparkling Black Diamond Heels', 'Viatu vya kisasa vyeusi vilivyopambwa kwa ustadi wa hali ya juu na mawe yanayong\'aa kama almasi. Vinakupa mvuto wa kipekee na heshima kwenye kila mtoko.', '✔ Kisigino cha wastani kinachotuliza mguu\n✔ Vinafaa kwa harusi, sherehe na hafla za jioni\n✔ Vinapatikana kwa saizi mbalimbali')">
+                    <img src="1.jpeg" class="product-img" alt="Sparkling Black Diamond Heels">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
                 <div class="product-info">
-                    <span class="product-tag">Watoto / Kids</span>
-                    <h3 class="product-title">Kids Air Sports Sneakers</h3>
-                    <p class="product-desc">Kiatu cha kisasa chenye muonekano bomba na sokko yenye mshikio imara. Kinakupa urahisi mtoto kutembea na kucheza bila kuumia.</p>
+                    <span class="product-tag">Ladies / Wanawake</span>
+                    <h3 class="product-title" onclick="openModal('1.jpeg', 'Ladies / Wanawake', 'Sparkling Black Diamond Heels', 'Viatu vya kisasa vyeusi vilivyopambwa kwa ustadi wa hali ya juu na mawe yanayong\'aa kama almasi. Vinakupa mvuto wa kipekee na heshima kwenye kila mtoko.', '✔ Kisigino cha wastani kinachotuliza mguu\n✔ Vinafaa kwa harusi, sherehe na hafla za jioni\n✔ Vinapatikana kwa saizi mbalimbali')">Sparkling Black Diamond Heels</h3>
+                    <p class="product-desc">Viatu vyeusi vilivyopambwa kwa mawe yanayong'aa sana kwenye mwanga. Chaguo maridadi kwa harusi, sherehe na mitoko ya heshima.</p>
                     <div class="btn-group">
                         <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Kids%20Air%20Sports%20Sneakers" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Sparkling%20Black%20Diamond%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Kiatu 2 -->
-            <div class="product-card" data-name="viatu vya shule nyeusi watoto kids school shoes">
-                <img src="2.jpeg" class="product-img" alt="Viatu vya Shule">
+            <!-- Kiatu 2 (2.jpeg) -->
+            <div class="product-card" data-name="luxury pearl crystal heels harusi bibi harusi nyeupe white silver">
+                <div class="img-wrapper" onclick="openModal('2.jpeg', 'Ladies / Bridal', 'Luxury Pearl & Crystal Heels', 'Muonekano wa kifahari wenye nakshi za lulu nyeupe, cheni ya dhahabu na kisigino cha kioo (crystal). Kimeundwa mahususi kukufanya ung\'ae kama malkia.', '✔ Nakshi za lulu na cheni ya kipekee pembeni\n✔ Kisigino imara cha kioo kisichochosha\n✔ Chaguo namba moja kwa maharusi na sherehe kubwa')">
+                    <img src="2.jpeg" class="product-img" alt="Luxury Pearl & Crystal Heels">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
                 <div class="product-info">
-                    <span class="product-tag">Watoto / Kids</span>
-                    <h3 class="product-title">Viatu vya Shule Vya Ngozi (Official)</h3>
-                    <p class="product-desc">Viatu vyeusi vya ngozi halisi na vyenye mshipi wa kufungia. Ni imara sana kwa matumizi ya shule ya kila siku.</p>
+                    <span class="product-tag">Ladies / Bridal</span>
+                    <h3 class="product-title" onclick="openModal('2.jpeg', 'Ladies / Bridal', 'Luxury Pearl & Crystal Heels', 'Muonekano wa kifahari wenye nakshi za lulu nyeupe, cheni ya dhahabu na kisigino cha kioo (crystal). Kimeundwa mahususi kukufanya ung\'ae kama malkia.', '✔ Nakshi za lulu na cheni ya kipekee pembeni\n✔ Kisigino imara cha kioo kisichochosha\n✔ Chaguo namba moja kwa maharusi na sherehe kubwa')">Luxury Pearl & Crystal Heels</h3>
+                    <p class="product-desc">Muonekano wa kifahari wenye nakshi za lulu na kisigino cha kioo. Ni chaguo bora kabisa kwa maharusi na sherehe za kipekee.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Luxury%20Pearl%20&%20Crystal%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 3 (3.jpeg) -->
+            <div class="product-card" data-name="silver crystal party sandals wazi wanawake">
+                <div class="img-wrapper" onclick="openModal('3.jpeg', 'Ladies / Wanawake', 'Silver Crystal Party Sandals', 'Sandals za wazi za rangi ya silver zenye mikanda miwili iliyojaa mawe yanayomeremeta. Zinakupa uhuru wa miguu na uzuri wa hali ya juu.', '✔ Mikanda laini isiyochubua mguu\n✔ Kisigino kifupi chenye mng\'ao wa silver\n✔ Zinaendana na nguo za rangi yoyote')">
+                    <img src="3.jpeg" class="product-img" alt="Silver Crystal Party Sandals">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Ladies / Wanawake</span>
+                    <h3 class="product-title" onclick="openModal('3.jpeg', 'Ladies / Wanawake', 'Silver Crystal Party Sandals', 'Sandals za wazi za rangi ya silver zenye mikanda miwili iliyojaa mawe yanayomeremeta. Zinakupa uhuru wa miguu na uzuri wa hali ya juu.', '✔ Mikanda laini isiyochubua mguu\n✔ Kisigino kifupi chenye mng\'ao wa silver\n✔ Zinaendana na nguo za rangi yoyote')">Silver Crystal Party Sandals</h3>
+                    <p class="product-desc">Sandals za wazi za rangi ya silver zenye mikanda ya mawe inayong'aa. Laini mguuni na nzuri sana kwa sherehe na mitoko.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Silver%20Crystal%20Party%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 4 (4.jpeg) -->
+            <div class="product-card" data-name="golden royal heels dhahabu gold wanawake">
+                <div class="img-wrapper" onclick="openModal('4.jpeg', 'Ladies / Wanawake', 'Golden Royal Chain Heels', 'Viatu vya rangi ya dhahabu (Gold) vinavyovutia macho kwa muundo wake wa kipekee wenye urembo wa cheni pembeni na mawe mbele. Vinakupa hadhi ya kifalme.', '✔ Rangi ya dhahabu isiyofubaa\n✔ Urembo wa cheni za dhahabu pembeni\n✔ Vinafaa kwa sherehe, dinner na hafla maalum')">
+                    <img src="4.jpeg" class="product-img" alt="Golden Royal Chain Heels">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Ladies / Wanawake</span>
+                    <h3 class="product-title" onclick="openModal('4.jpeg', 'Ladies / Wanawake', 'Golden Royal Chain Heels', 'Viatu vya rangi ya dhahabu (Gold) vinavyovutia macho kwa muundo wake wa kipekee wenye urembo wa cheni pembeni na mawe mbele. Vinakupa hadhi ya kifalme.', '✔ Rangi ya dhahabu isiyofubaa\n✔ Urembo wa cheni za dhahabu pembeni\n✔ Vinafaa kwa sherehe, dinner na hafla maalum')">Golden Royal Chain Heels</h3>
+                    <p class="product-desc">Viatu vya kisasa vya rangi ya dhahabu vyenye urembo wa cheni na mawe yanayowaka. Vinakupa muonekano wa kifalme.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Golden%20Royal%20Chain%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 5 (5.jpeg) -->
+            <div class="product-card" data-name="viatu vya shule watoto nyeusi ngozi official kids school">
+                <div class="img-wrapper" onclick="openModal('5.jpeg', 'Watoto / School', 'Viatu Imara vya Shule (Patent Black)', 'Viatu vyeusi vinavyong\'aa vilivyotengenezwa kwa ngozi imara yenye mshipi wa kufungia (strap). Vimetengenezwa kuhimili mikikimikiki ya shule.', '✔ Soli ngumu na imara isiyoteleza\n✔ Mshipi rahisi kwa mtoto kufunga na kufungua\n✔ Ndani kuna sponji laini kulinda miguu ya mtoto')">
+                    <img src="5.jpeg" class="product-img" alt="Viatu Imara vya Shule">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Watoto / School</span>
+                    <h3 class="product-title" onclick="openModal('5.jpeg', 'Watoto / School', 'Viatu Imara vya Shule (Patent Black)', 'Viatu vyeusi vinavyong\'aa vilivyotengenezwa kwa ngozi imara yenye mshipi wa kufungia (strap). Vimetengenezwa kuhimili mikikimikiki ya shule.', '✔ Soli ngumu na imara isiyoteleza\n✔ Mshipi rahisi kwa mtoto kufunga na kufungua\n✔ Ndani kuna sponji laini kulinda miguu ya mtoto')">Viatu Imara vya Shule (Official)</h3>
+                    <p class="product-desc">Viatu vyeusi vya ngozi imara vyenye mshipi wa kufungia. Vinadumu muda mrefu na kumpa mtoto muonekano nadhifu shuleni.</p>
                     <div class="btn-group">
                         <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
                         <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Viatu%20vya%20Shule%20vya%20Watoto" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
@@ -422,100 +642,87 @@
                 </div>
             </div>
 
-            <!-- Kiatu 3 -->
-            <div class="product-card" data-name="high heels wanawake ladies party shoes">
-                <img src="3.jpeg" class="product-img" alt="Viatu vya Wanawake">
-                <div class="product-info">
-                    <span class="product-tag">Ladies / Wanawake</span>
-                    <h3 class="product-title">Luxury Pearl & Crystal Heels</h3>
-                    <p class="product-desc">Muonekano wa kifahari wenye urembo wa lulu na urembo wa kioo kisigino. Ni chaguo bora kabisa kwa harusi na sherehe.</p>
-                    <div class="btn-group">
-                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Luxury%20Pearl%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
+            <!-- Kiatu 6 (6.jpeg) -->
+            <div class="product-card" data-name="black leather comfort sandals nyeusi ngozi kutembea">
+                <div class="img-wrapper" onclick="openModal('6.jpeg', 'Comfort / Casual', 'Black Leather Comfort Sandals', 'Sandals nyeusi zilizoundwa mahususi kwa ajili ya starehe ya miguu yako. Zina soli nene na laini inayosaidia kutembea umbali mrefu bila kuchoka.', '✔ Ngozi laini yenye mikanda inayoshika mguu vizuri\n✔ Soli yenye mneso (shock absorber) kwa afya ya miguu\n✔ Zinafaa kwa kazini, sokoni na matembezi ya kila siku')">
+                    <img src="6.jpeg" class="product-img" alt="Black Leather Comfort Sandals">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
                 </div>
-            </div>
-
-            <!-- Kiatu 4 -->
-            <div class="product-card" data-name="gold heels wanawake ladies shiny shoes">
-                <img src="4.jpeg" class="product-img" alt="High Heels za Dhahabu">
-                <div class="product-info">
-                    <span class="product-tag">Ladies / Wanawake</span>
-                    <h3 class="product-title">Golden Royal Heels</h3>
-                    <p class="product-desc">Viatu vya kisasa vya rangi ya dhahabu vyenye urembo wa cheni na mawe yanayowaka. Vinakupa muonekano wa kifalme.</p>
-                    <div class="btn-group">
-                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Golden%20Royal%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kiatu 5 -->
-            <div class="product-card" data-name="black diamond heels wanawake ladies">
-                <img src="5.jpeg" class="product-img" alt="Black Heels">
-                <div class="product-info">
-                    <span class="product-tag">Ladies / Wanawake</span>
-                    <h3 class="product-title">Sparkling Black Diamond Heels</h3>
-                    <p class="product-desc">Muonekano wa kuvutia wenye mawe madogo yanayong'aa sana kwenye mwanga. Viatu vya heshima sana kwa kina dada na akina mama.</p>
-                    <div class="btn-group">
-                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Black%20Diamond%20Heels" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kiatu 6 -->
-            <div class="product-card" data-name="silver sandals wanawake ladies open shoes">
-                <img src="6.jpeg" class="product-img" alt="Sandals za Silver">
-                <div class="product-info">
-                    <span class="product-tag">Ladies / Wanawake</span>
-                    <h3 class="product-title">Silver Crystal Party Sandals</h3>
-                    <p class="product-desc">Sandals za wazi za rangi ya silver zenye mikanda ya mawe inayong'aa. Ziko laini na ni nzuri sana kwa matumizi ya kawaida na sherehe.</p>
-                    <div class="btn-group">
-                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Silver%20Crystal%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kiatu 7 -->
-            <div class="product-card" data-name="black sandals ngozi imara comfort shoes">
-                <img src="7.jpeg" class="product-img" alt="Black Comfort Sandals">
                 <div class="product-info">
                     <span class="product-tag">Comfort / Casual</span>
-                    <h3 class="product-title">Black Leather Comfort Sandals</h3>
-                    <p class="product-desc">Sandals imara zilizotengenezwa kwa ngozi laini na inayotuliza mguu wakati wa kutembea umbali mrefu.</p>
+                    <h3 class="product-title" onclick="openModal('6.jpeg', 'Comfort / Casual', 'Black Leather Comfort Sandals', 'Sandals nyeusi zilizoundwa mahususi kwa ajili ya starehe ya miguu yako. Zina soli nene na laini inayosaidia kutembea umbali mrefu bila kuchoka.', '✔ Ngozi laini yenye mikanda inayoshika mguu vizuri\n✔ Soli yenye mneso (shock absorber) kwa afya ya miguu\n✔ Zinafaa kwa kazini, sokoni na matembezi ya kila siku')">Black Leather Comfort Sandals</h3>
+                    <p class="product-desc">Sandals imara za ngozi laini zenye soli inayotuliza mguu. Chaguo bora kwa matembezi marefu na matumizi ya kila siku.</p>
                     <div class="btn-group">
                         <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Black%20Comfort%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Black%20Leather%20Comfort%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Kiatu 8 -->
-            <div class="product-card" data-name="brown sandals ngozi ya udongo casual shoes">
-                <img src="8.jpeg" class="product-img" alt="Brown Sandals">
+            <!-- Kiatu 7 (7.jpeg) -->
+            <div class="product-card" data-name="brown comfort sandals udongo buckle casual">
+                <div class="img-wrapper" onclick="openModal('7.jpeg', 'Comfort / Casual', 'Brown Buckle Comfort Sandals', 'Sandals za rangi ya udongo (Brown) zenye mkanda wa buckle unaorekebishika. Zina muundo wa kisasa unaoendana na mavazi mbalimbali.', '✔ Rangi ya brown inayovutia na nadhifu\n✔ Buckle imara ya dhahabu pembeni\n✔ Nyepesi sana na hazichoshi miguu')">
+                    <img src="7.jpeg" class="product-img" alt="Brown Buckle Comfort Sandals">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Comfort / Casual</span>
+                    <h3 class="product-title" onclick="openModal('7.jpeg', 'Comfort / Casual', 'Brown Buckle Comfort Sandals', 'Sandals za rangi ya udongo (Brown) zenye mkanda wa buckle unaorekebishika. Zina muundo wa kisasa unaoendana na mavazi mbalimbali.', '✔ Rangi ya brown inayovutia na nadhifu\n✔ Buckle imara ya dhahabu pembeni\n✔ Nyepesi sana na hazichoshi miguu')">Brown Buckle Comfort Sandals</h3>
+                    <p class="product-desc">Sandals za rangi ya udongo zenye mkanda wa buckle na soli laini. Zinakupa muonekano nadhifu na starehe siku nzima.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Brown%20Buckle%20Comfort%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 8 (8.jpeg) -->
+            <div class="product-card" data-name="classic brown cross strap sandals">
+                <div class="img-wrapper" onclick="openModal('8.jpeg', 'Casual / Everyday', 'Classic Brown Cross-Strap Sandals', 'Muonekano wa juu wa sandals zetu pendwa za rangi ya brown. Zina mikanda inayopishana kwa ustadi na godoro laini ndani.', '✔ Godoro laini linalopumzisha nyayo\n✔ Mikanda inayopishana kwa usalama wa mguu\n✔ Imara na rahisi kusafisha')">
+                    <img src="8.jpeg" class="product-img" alt="Classic Brown Cross-Strap Sandals">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
                 <div class="product-info">
                     <span class="product-tag">Casual / Everyday</span>
-                    <h3 class="product-title">Classic Brown Leather Sandals</h3>
-                    <p class="product-desc">Sandals za rangi ya udongo (brown) zilivyotengenezwa kisasa kwa mshikio wa buckle. Zinakupa urahisi na muonekano bomba wa kila siku.</p>
+                    <h3 class="product-title" onclick="openModal('8.jpeg', 'Casual / Everyday', 'Classic Brown Cross-Strap Sandals', 'Muonekano wa juu wa sandals zetu pendwa za rangi ya brown. Zina mikanda inayopishana kwa ustadi na godoro laini ndani.', '✔ Godoro laini linalopumzisha nyayo\n✔ Mikanda inayopishana kwa usalama wa mguu\n✔ Imara na rahisi kusafisha')">Classic Brown Cross-Strap Sandals</h3>
+                    <p class="product-desc">Sandals zenye mikanda inayopishana kwa ustadi na godoro laini ndani. Zinakupa urahisi na mwonekano wa kuvutia kila siku.</p>
                     <div class="btn-group">
                         <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Brown%20Leather%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Classic%20Brown%20Cross-Strap%20Sandals" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
             </div>
 
-            <!-- Kiatu 9 -->
-            <div class="product-card" data-name="brown knit sneakers za soksi wakubwa unisex">
-                <img src="9.jpeg" class="product-img" alt="Slip-on Sneakers">
+            <!-- Kiatu 9 (9.jpeg) -->
+            <div class="product-card" data-name="breathable knit slip on sneakers za soksi mazoezi kutembea">
+                <div class="img-wrapper" onclick="openModal('9.jpeg', 'Sneakers / Sport', 'Breathable Knit Slip-On Sneakers', 'Sneakers nyepesi kama unyoya zenye muundo wa soksi unaopitisha hewa vizuri. Hazihitaji kufunga kamba—unachomeka tu na kuondoka!', '✔ Kitambaa kinachopitisha hewa (hakuna joto miguuni)\n✔ Soli nyepesi na inayonyumbulika (flexible)\n✔ Zinafaa kwa mazoezi, safari na matembezi')">
+                    <img src="9.jpeg" class="product-img" alt="Breathable Knit Slip-On Sneakers">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
                 <div class="product-info">
-                    <span class="product-tag">Sneakers / Casual</span>
-                    <h3 class="product-title">Breathable Slip-On Sneakers</h3>
-                    <p class="product-desc">Sneakers chepesi sana zenye mtindo wa soksi. Inakupa urahisi wa kuvaa haraka na kutoa hewa vizuri kwa ajili ya kutembea kwa raha.</p>
+                    <span class="product-tag">Sneakers / Sport</span>
+                    <h3 class="product-title" onclick="openModal('9.jpeg', 'Sneakers / Sport', 'Breathable Knit Slip-On Sneakers', 'Sneakers nyepesi kama unyoya zenye muundo wa soksi unaopitisha hewa vizuri. Hazihitaji kufunga kamba—unachomeka tu na kuondoka!', '✔ Kitambaa kinachopitisha hewa (hakuna joto miguuni)\n✔ Soli nyepesi na inayonyumbulika (flexible)\n✔ Zinafaa kwa mazoezi, safari na matembezi')">Breathable Knit Slip-On Sneakers</h3>
+                    <p class="product-desc">Sneakers nyepesi zenye mtindo wa soksi zinazopitisha hewa vizuri. Rahisi kuvaa na ni bora kwa kutembea na mazoezi.</p>
                     <div class="btn-group">
                         <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
-                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Breathable%20Slip-On%20Sneakers" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Breathable%20Knit%20Slip-On%20Sneakers" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiatu 10 (10.jpeg) -->
+            <div class="product-card" data-name="kids air sports sneakers watoto raba michezo">
+                <div class="img-wrapper" onclick="openModal('10.jpeg', 'Watoto / Kids', 'Kids Air Max Sports Sneakers', 'Raba za kisasa za watoto zenye mchanganyiko wa rangi za kuvutia (nyeupe, nyeusi, kijivu na nyekundu). Zina soli ya Air inayomlinda mtoto anapokimbia.', '✔ Muundo wa kisasa unaompendeza kila mtoto\n✔ Soli imara yenye mshikio mzuri chini\n✔ Nyepesi na zinazodumu muda mrefu')">
+                    <img src="10.jpeg" class="product-img" alt="Kids Air Max Sports Sneakers">
+                    <span class="zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i> Kuza</span>
+                </div>
+                <div class="product-info">
+                    <span class="product-tag">Watoto / Kids</span>
+                    <h3 class="product-title" onclick="openModal('10.jpeg', 'Watoto / Kids', 'Kids Air Max Sports Sneakers', 'Raba za kisasa za watoto zenye mchanganyiko wa rangi za kuvutia (nyeupe, nyeusi, kijivu na nyekundu). Zina soli ya Air inayomlinda mtoto anapokimbia.', '✔ Muundo wa kisasa unaompendeza kila mtoto\n✔ Soli imara yenye mshikio mzuri chini\n✔ Nyepesi na zinazodumu muda mrefu')">Kids Air Max Sports Sneakers</h3>
+                    <p class="product-desc">Raba za kisasa za watoto zenye muonekano bomba na soli imara. Zinampa mtoto uhuru na starehe anapotembea na kucheza.</p>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a href="https://wa.me/255622478731?text=Habari%20BinSalum%20Shoes,%20nahitaji%20maelezo%20na%20bei%20ya%20Kids%20Air%20Max%20Sports%20Sneakers" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -543,6 +750,31 @@
 
     </div>
 
+    <!-- Modal for Zoom & Full Product Explanation -->
+    <div id="productModal" class="modal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container" id="modalImgBox" onclick="toggleZoom()">
+                    <img id="modalImg" class="modal-img" src="" alt="Product Preview">
+                    <span class="zoom-badge" id="zoomBadgeText"><i class="fa-solid fa-magnifying-glass-plus"></i> Bonyeza picha ku-Zoom</span>
+                </div>
+                <div class="modal-details">
+                    <div>
+                        <span class="product-tag" id="modalTag">Category</span>
+                        <h3 id="modalTitle">Jina la Kiatu</h3>
+                        <p id="modalDesc">Maelezo marefu ya kiatu yatakuja hapa.</p>
+                        <div class="modal-highlights" id="modalHighlights"></div>
+                    </div>
+                    <div class="btn-group">
+                        <a href="tel:0622478731" class="btn-call"><i class="fa-solid fa-phone"></i> Piga Simu</a>
+                        <a id="modalWaBtn" href="#" class="btn-wa" target="_blank"><i class="fa-brands fa-whatsapp"></i> Uliza Bei WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer / Mawasiliano -->
     <footer id="mawasiliano">
         <h3 id="footerHeading" style="margin-bottom: 8px; color: #d4af37;">BinSalum Shoes</h3>
@@ -552,8 +784,51 @@
         <p style="margin-top: 15px; font-size: 12px; color: #888;">&copy; 2026 BinSalum Shoes. Haki zote zimehifadhiwa.</p>
     </footer>
 
-    <!-- JavaScript for Search and Language Translation -->
+    <!-- JavaScript for Modal, Zoom, Search and Language Translation -->
     <script>
+        // Open Modal with Product Details
+        function openModal(imgSrc, tag, title, desc, highlights) {
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('modalTag').innerText = tag;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalHighlights').innerHTML = highlights.replace(/\n/g, '<br>');
+            
+            let waText = encodeURIComponent("Habari BinSalum Shoes, nahitaji maelezo na bei ya " + title);
+            document.getElementById('modalWaBtn').href = "https://wa.me/255622478731?text=" + waText;
+
+            // Reset zoom state
+            let imgBox = document.getElementById('modalImgBox');
+            imgBox.classList.remove('zoomed');
+            document.getElementById('zoomBadgeText').innerHTML = '<i class="fa-solid fa-magnifying-glass-plus"></i> Bonyeza picha ku-Zoom';
+
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        // Toggle Zoom inside Modal
+        function toggleZoom() {
+            let imgBox = document.getElementById('modalImgBox');
+            let badge = document.getElementById('zoomBadgeText');
+            imgBox.classList.toggle('zoomed');
+            
+            if (imgBox.classList.contains('zoomed')) {
+                badge.innerHTML = '<i class="fa-solid fa-magnifying-glass-minus"></i> Bonyeza kupunguza';
+            } else {
+                badge.innerHTML = '<i class="fa-solid fa-magnifying-glass-plus"></i> Bonyeza picha ku-Zoom';
+            }
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target.id === 'productModal') {
+                closeModal();
+            }
+        }
+
         // Search Function
         function searchProducts() {
             let input = document.getElementById('searchInput').value.toLowerCase();
@@ -585,6 +860,7 @@
                 document.getElementById('heroSubTitle').innerText = "Step with Style";
                 document.getElementById('heroDesc').innerText = "Quality Shoes at Affordable Prices for Kids and Adults.";
                 document.getElementById('secTitle').innerText = "Our Shoe Collection";
+                document.getElementById('secSub').innerText = "💡 Click any shoe image to zoom in and view full details";
                 document.getElementById('navProducts').innerText = "Shoes";
                 document.getElementById('navAbout').innerText = "About Us";
                 document.getElementById('navContact').innerText = "Contact";
@@ -601,12 +877,13 @@
                 document.getElementById('heroSubTitle').innerText = "خطواتك بأناقة";
                 document.getElementById('heroDesc').innerText = "أحذية عالية الجودة بأسعار مناسبة للأطفال والكبار.";
                 document.getElementById('secTitle').innerText = "تشكيلة الأحذية لدينا";
+                document.getElementById('secSub').innerText = "💡 اضغط على أي صورة حذاء لتكبيرها وعرض التفاصيل الكاملة";
                 document.getElementById('navProducts').innerText = "الأحذية";
                 document.getElementById('navAbout').innerText = "معلومات عنا";
                 document.getElementById('navContact').innerText = "اتصل بنا";
                 document.getElementById('searchInput').placeholder = "ابحث عن الأحذية...";
                 document.getElementById('f1Title').innerText = "جودة عالية";
-                document.getElementById('f1Desc').innerText = "نقدم لك أحذية متينة وأنقية.";
+                document.getElementById('f1Desc').innerText = "نقدم لك أحذية متينة وأنيقة.";
                 document.getElementById('f2Title').innerText = "أسعار مناسبة";
                 document.getElementById('f2Desc').innerText = "احصل على أحذيتك بأسعار ممتازة.";
                 document.getElementById('f3Title').innerText = "متجرنا";
@@ -617,6 +894,7 @@
                 document.getElementById('heroSubTitle').innerText = "Step with Style";
                 document.getElementById('heroDesc').innerText = "Quality Shoes at Affordable Prices. Pendezesha familia yako kwa viatu bora na vya kisasa kwa watoto na wakubwa.";
                 document.getElementById('secTitle').innerText = "Mkusanyiko Wetu wa Viatu";
+                document.getElementById('secSub').innerText = "💡 Bonyeza picha ya kiatu chochote kukikuza (Zoom) na kusoma maelezo yake kamili";
                 document.getElementById('navProducts').innerText = "Viatu";
                 document.getElementById('navAbout').innerText = "Kuhusu Sisi";
                 document.getElementById('navContact').innerText = "Mawasiliano";
