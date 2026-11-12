@@ -854,6 +854,7 @@
     <!-- JavaScript for Modal, Zoom, Search and Language Translation -->
     <script>
         // Open Modal with Product Details
+        // Kuwezesha Back Button ya Simu isikutie nje ya tovuti
         function openModal(imgSrc, tag, title, desc, highlights) {
             document.getElementById('modalImg').src = imgSrc;
             document.getElementById('modalTag').innerText = tag;
@@ -864,12 +865,14 @@
             let waText = encodeURIComponent("Habari BinSalum Shoes, nahitaji maelezo na bei ya " + title);
             document.getElementById('modalWaBtn').href = "https://wa.me/255622478731?text=" + waText;
 
-            // Reset zoom state
             let imgBox = document.getElementById('modalImgBox');
             imgBox.classList.remove('zoomed');
             document.getElementById('zoomBadgeText').innerHTML = '<i class="fa-solid fa-magnifying-glass-plus"></i> Bonyeza picha ku-Zoom';
 
             document.getElementById('productModal').style.display = 'flex';
+
+            // Inaongeza kumbukumbu ya simu isitoke nje ya page
+            history.pushState({modalOpen: true}, "");
         }
 
         // Toggle Zoom inside Modal
@@ -890,11 +893,13 @@
             document.getElementById('productModal').style.display = 'none';
         }
 
-        function closeModalOutside(event) {
-            if (event.target.id === 'productModal') {
-                closeModal();
+        // Kumsikiliza mtumiaji akibonyeza kitufe cha kurudi nyuma cha simu
+        window.addEventListener('popstate', function(event) {
+            let modal = document.getElementById('productModal');
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
             }
-        }
+        });
 
         // Search Function
         function searchProducts() {
